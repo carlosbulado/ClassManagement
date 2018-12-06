@@ -6,13 +6,82 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <EditText
+        android:id="@+id/loginPage_login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="Login"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/loginPage_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginPage_login" />
+
+    <Button
+        android:id="@+id/loginPage_loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="8dp"
+        android:text="Login"
+        android:onClick="onLoginButtonClick"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/loginPage_forgetPassword"
+        app:layout_constraintTop_toBottomOf="@+id/loginPage_password" />
+
+    <Button
+        android:id="@+id/loginPage_forgetPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
+        android:text="Forget Password"
+        app:layout_constraintEnd_toStartOf="@+id/loginPage_loginButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginPage_password" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/loginPage_title"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/loginPage_registerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="8dp"
+        android:text="REGISTER"
+        android:onClick="onRegisterButtonClick"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginPage_forgetPassword" />
 </android.support.constraint.ConstraintLayout>

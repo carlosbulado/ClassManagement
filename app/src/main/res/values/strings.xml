@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">ClassManagement</string>
+    <string name="app_name">Class Management</string>
+    <string name="loginPage_title">Login</string>
 </resources>
