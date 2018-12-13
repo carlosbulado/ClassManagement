@@ -6,6 +6,7 @@ public class Subject extends Entity
 {
     private String Name;
     private ArrayList<Student> Students;
+    private User Professor;
 
     public String getName ()
     {
@@ -19,6 +20,7 @@ public class Subject extends Entity
 
     public ArrayList<Student> getStudents ()
     {
+        if (Students == null) return new ArrayList<>();
         return Students;
     }
 
@@ -41,6 +43,18 @@ public class Subject extends Entity
             stMarks += st.getTotalMarks();
         }
 
-        return stMarks / (this.getStudents().size() * 100);
+        Double dob = Double.parseDouble(String.valueOf(stMarks));
+
+        return this.getStudents().size() > 0 ? dob / this.getStudents().size() : 0;
+    }
+
+    public User getProfessor ()
+    {
+        return Professor;
+    }
+
+    public void setProfessor (User professor)
+    {
+        Professor = professor;
     }
 }

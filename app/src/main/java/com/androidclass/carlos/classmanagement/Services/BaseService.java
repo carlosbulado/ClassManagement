@@ -31,11 +31,11 @@ public abstract class BaseService<T extends Entity>
         this.repository = repository;
     }
 
-    public void save(T obj)
+    public T save(T obj)
     {
         if (obj.getId() > 0)
-            this.getRepository().update(obj);
+            return this.getRepository().update(obj);
         else
-            this.getRepository().insert(obj);
+            return this.getRepository().insert(obj);
     }
 }

@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.androidclass.carlos.classmanagement.Domain.Student;
 import com.androidclass.carlos.classmanagement.Domain.Subject;
+import com.androidclass.carlos.classmanagement.Services.UserService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -94,5 +95,44 @@ public class SubjectRepository extends BaseRepository<Subject>
         }
 
         return subArr;
+    }
+
+    @Override
+    public Subject insert (Subject obj)
+    {
+        Subject sub = super.insert(obj);
+        obj.setId(sub.getId());
+        this.updateStudentsForSubject(obj);
+        sub.setProfessor(obj.getProfessor());
+        this.insertIntoTheProfessor(sub);
+        return sub;
+    }
+
+    @Override
+    public Subject update (Subject obj)
+    {
+        Subject sub = super.update(obj);
+        db.delete(SubjectRepository.TABLE_REF_STUDENTS_NAME, SubjectRepository.TABLE_REF_STUDENTS_SUBJECT_ID + " = ? ", new String[] { String.valueOf(obj.getId()) });
+        this.updateStudentsForSubject(obj);
+        return sub;
+    }
+
+    private void updateStudentsForSubject(Subject obj)
+    {
+        for (Student st : obj.getStudents())
+        {
+            ContentValues values = new ContentValues();
+            values.put(SubjectRepository.TABLE_REF_STUDENTS_STUDENT_ID, st.getId());
+            values.put(SubjectRepository.TABLE_REF_STUDENTS_SUBJECT_ID, obj.getId());
+            db.insert(SubjectRepository.TABLE_REF_STUDENTS_NAME, null, values);
+        }
+    }
+
+    private void insertIntoTheProfessor(Subject obj)
+    {
+        ContentValues values = new ContentValues();
+        values.put(UserRepository.TABLE_REF_SUBJECTS_USER_ID, obj.getProfessor().getId());
+        values.put(UserRepository.TABLE_REF_SUBJECTS_SUBJECT_ID, obj.getId());
+        db.insert(UserRepository.TABLE_REF_SUBJECTS_NAME, null, values);
     }
 }

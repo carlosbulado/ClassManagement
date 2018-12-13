@@ -51,14 +51,16 @@ public abstract class BaseRepository<T extends Entity>
         return TableColumns;
     }
 
-    public void insert(T obj)
+    public T insert(T obj)
     {
         db.insert(this.getTableName(), null, this.getAllValues(obj));
+        return this.getSavedObject(obj);
     }
 
-    public void update(T obj)
+    public T update(T obj)
     {
         db.update(this.getTableName(), this.getAllValues(obj), this.getID() + " = ? ", new String[] { String.valueOf(obj.getId()) });
+        return this.getSavedObject(obj);
     }
 
     public void delete(T obj)
@@ -121,4 +123,17 @@ public abstract class BaseRepository<T extends Entity>
 
     protected abstract ContentValues getAllValues(T obj);
     protected abstract T loadObject (Cursor linesCursor);
+
+    private T getSavedObject(T obj)
+    {
+        if (obj.getId() > 0)
+        {
+            return this.getById(obj.getId());
+        }
+        else
+        {
+            ArrayList<T> arr = this.getAll();
+            return arr.get(arr.size() - 1);
+        }
+    }
 }

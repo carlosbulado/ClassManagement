@@ -33,32 +33,25 @@ public class MainActivity extends AppCompatActivity
         ButterKnife.bind(this);
 
         myPref = getSharedPreferences("userDetails", MODE_PRIVATE);
+
+        if(myPref.getInt("UserId", 0) > 0)  NavigateUtil.goTo(this, ListClassesActivity.class);
     }
 
     public void onLoginButtonClick(View view)
     {
-        NavigateUtil.goTo(this, ListClassesActivity.class);
-
         String login = loginText.getText().toString();
         String pass = passwordText.getText().toString();
 
         User loggedUser = ServiceUtils.loginService.Login(login, pass);
         if(loggedUser.getId() != 0)
         {
-            Toast.makeText(this, "LOGGED!", Toast.LENGTH_SHORT).show();
+            myPref.edit().putInt("UserId", loggedUser.getId()).commit();
+            NavigateUtil.goTo(this, ListClassesActivity.class);
         }
         else
         {
-            Toast.makeText(this, "TRY AGAIN!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Invalid username or password!", Toast.LENGTH_SHORT).show();
         }
-
-        // Save on Session
-        /*
-        myPref.edit().putString("login", login).apply();
-        SharedPreferences newSharedPref = getSharedPreferences("userDetails", MODE_PRIVATE);
-        String the_login = newSharedPref.getString("login", null);
-        Toast.makeText(this, "" + the_login, Toast.LENGTH_SHORT).show();
-        */
     }
 
     public void onRegisterButtonClick(View view)

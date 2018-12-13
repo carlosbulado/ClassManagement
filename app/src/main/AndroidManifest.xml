@@ -17,9 +17,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".ListClassesActivity"></activity>
+        <activity
+            android:name=".RegisterActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".ListClassesActivity" />
+        <activity android:name=".AddSubjectActivity"/>
+        <activity android:name=".SessionAppActivity"></activity>
     </application>
 
 </manifest>

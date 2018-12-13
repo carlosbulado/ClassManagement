@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.androidclass.carlos.classmanagement.Database.DBHelper;
 import com.androidclass.carlos.classmanagement.Services.LoginService;
+import com.androidclass.carlos.classmanagement.Services.StudentService;
 import com.androidclass.carlos.classmanagement.Services.SubjectService;
 import com.androidclass.carlos.classmanagement.Services.UserService;
 import com.androidclass.carlos.classmanagement.Utils.ServiceUtils;
@@ -35,6 +36,7 @@ public class SplashActivity extends AppCompatActivity
                 ServiceUtils.loginService = new LoginService(getApplicationContext());
                 ServiceUtils.userService = new UserService(getApplicationContext());
                 ServiceUtils.subjectService = new SubjectService(getApplicationContext());
+                ServiceUtils.studentService = new StudentService(getApplicationContext());
                 /* Create an Intent that will start the Menu-Activity. */
                 Intent mainIntent = new Intent(SplashActivity.this, MainActivity.class);
                 SplashActivity.this.startActivity(mainIntent);

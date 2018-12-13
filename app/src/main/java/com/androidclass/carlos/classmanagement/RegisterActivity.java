@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.androidclass.carlos.classmanagement.Domain.User;
 import com.androidclass.carlos.classmanagement.Utils.NavigateUtil;
@@ -38,6 +39,8 @@ public class RegisterActivity extends AppCompatActivity
 
         ServiceUtils.userService.save(user);
 
+        Toast.makeText(this, "User registered!", Toast.LENGTH_SHORT).show();
+        
         NavigateUtil.goTo(this, MainActivity.class);
     }
 }
